@@ -2,6 +2,7 @@ package com.ian.bank_account_system;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 
@@ -40,6 +41,7 @@ class BankAccount
     
     
     //Methods for deposit and withdrawal
+    //It is in public, so that outside class can access to this methods
     public void deposit(double amount)
     {
         balance = balance + amount;
@@ -59,13 +61,17 @@ class BankAccount
         }
     }
     
+    
     //Methods for balance inquiry
+    //It is in public, so that outside class can access to this methods
     public double checkBalance()
     {
         return balance;
     }
     
+    
     //Methods for transaction history
+    //It is in public, so that outside class can access to this methods
     public void printTransactionHistory()
     {
         System.out.println("Transaction history for account number: " + accountNumber);
@@ -76,6 +82,10 @@ class BankAccount
         
     }
     
+    
+    //Transcation log, this method is responsible for logging a transaction in the transaction history list
+    //making it private so that only methods inside the BankAccount class can directly and transaction to the 
+    //transaction history
     private void logTransaction(String transaction)
     {
         transactionHistory.add(transaction);
@@ -83,18 +93,45 @@ class BankAccount
 }
 
 
+class AccountManager
+{
+    private static List<BankAccount> accounts = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+}
 
 
 
 
 public class Bank_Account_System 
 {
-
     public static void main(String[] args) 
     {
+        int choice;
+        
         do
         {
+            System.out.println("\nMenu:");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Transaction History");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
             
-        }
+            choice = scanner.nextInt();
+            
+            switch(choice)
+            {
+                case 1:
+                {
+                    System.out.println("Enter deposit amount: ");
+                    
+                    
+                }
+            }
+            
+            
+            
+        } while(choice != 5);
     }
 }
