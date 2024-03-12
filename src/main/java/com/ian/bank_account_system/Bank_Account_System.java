@@ -142,11 +142,34 @@ class AccountManager
         System.out.println("Enter account number: ");
         int accountNumber = scanner.nextInt();
         
+        BankAccount account = findAccount(accountNumber);
+        
+        if(account != null)
+        {
+            System.out.println("Enter amount to " + transactionType + ": ");
+            double amount = scanner.nextDouble();
+            
+            
+            
+        }
+        
         
     }
     
     
     //
+    private static BankAccount findAccount(int accountNumber)
+    {
+        for(BankAccount account : accounts)
+        {
+            if(account.getAccountNumber() == accountNumber)
+            {
+                return account;
+            }
+        }
+        
+        return null;
+    }
 }
 
 
