@@ -134,6 +134,19 @@ class AccountManager
         System.out.println("Account number: " + create_account.getAccountNumber());
         
     }
+    
+    
+    //
+    public static void performTransaction(String transactionType)
+    {
+        System.out.println("Enter account number: ");
+        int accountNumber = scanner.nextInt();
+        
+        
+    }
+    
+    
+    //
 }
 
 
