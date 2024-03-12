@@ -95,8 +95,17 @@ class BankAccount
 
 class AccountManager
 {
-    private static List<BankAccount> accounts = new ArrayList<>();
-    private static Scanner scanner = new Scanner(System.in);
+    //private static  -> it is only accessible within this class, and not available for instantiation 
+    //new ArrayList<> -> initialized and empty arraylist
+    private static List<BankAccount> accounts = new ArrayList<>();  //static variable named accounts of type List<BankAccount>
+    private static Scanner scanner = new Scanner(System.in);   //static variable named scanned of type Scanner
+    
+    
+    //methods for creating account
+    public static void createAccount()
+    {
+        
+    }
 }
 
 
@@ -110,12 +119,13 @@ public class Bank_Account_System
         
         do
         {
-            System.out.println("\nMenu:");
-            System.out.println("1. Deposit");
-            System.out.println("2. Withdraw");
-            System.out.println("3. Check Balance");
-            System.out.println("4. Transaction History");
-            System.out.println("5. Exit");
+            System.out.println("\nBank Account System Menu:");
+            System.out.println("1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Check Balance");
+            System.out.println("5. Transaction History");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
             
             choice = scanner.nextInt();
@@ -124,7 +134,7 @@ public class Bank_Account_System
             {
                 case 1:
                 {
-                    System.out.println("Enter deposit amount: ");
+                    
                     
                     
                 }
