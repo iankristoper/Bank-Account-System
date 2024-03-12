@@ -90,6 +90,22 @@ class BankAccount
     {
         transactionHistory.add(transaction);
     }
+    
+    
+    public int getAccountNumber()
+    {
+        return accountNumber;
+    }
+    
+    public String getAccountHolderName()
+    {
+        return accountHolderName;
+    }
+    
+    public String getAccountType()
+    {
+        return accountType;
+    }
 }
 
 
@@ -104,6 +120,18 @@ class AccountManager
     //methods for creating account
     public static void createAccount()
     {
+        System.out.println("Enter your name: ");
+        String holderName = scanner.next();
+        System.out.println("Enter account type: ");
+        String accountType = scanner.next();
+        System.out.println("Enter initial balance: ");
+        double initialBalance = scanner.nextDouble();
+        
+        BankAccount create_account = new BankAccount(holderName, accountType, initialBalance);
+        accounts.add(create_account);
+        
+        System.out.println("Account created successfully!");
+        System.out.println("Account number: " + create_account.getAccountNumber());
         
     }
 }
