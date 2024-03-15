@@ -22,13 +22,13 @@ class BankAccount
     private String accountHolderName;
     private String accountType;
     private double balance;
-    private List<String> transactionHistory;    
+    private List<String> transactionHistory;     
   
     
     //Constructor 
-    public BankAccount(String holderName, String holderType, double holderBalance)
+    public BankAccount(String holderName, String holderType, double holderBalance) 
     {
-        this.accountNumber = accountNumberCounter++;
+        this.accountNumber = AccountManager.generateAccountNumber();
         this.accountHolderName = holderName;
         this.accountType = holderType;
         this.balance = holderBalance;
@@ -67,19 +67,6 @@ class BankAccount
     }
     
     
-    //Methods for transaction history
-    //It is in public, so that outside class can access to this methods
-    public void printTransactionHistory()
-    {
-        System.out.println("Transaction history for account number: " + accountNumber);
-        for(String transaction : transactionHistory)
-        {
-            System.out.println(transaction);
-        }
-        
-    }
-    
-    
     //Transcation log, this method is responsible for logging a transaction in the transaction history list
     //making it private so that only methods inside the BankAccount class can directly and transaction to the 
     //transaction history
@@ -88,6 +75,10 @@ class BankAccount
         transactionHistory.add(transaction);
     }
     
+    public List<String> printTransactionHistory() 
+    {
+        return transactionHistory;
+    }
     
     public int getAccountNumber()
     {
@@ -149,7 +140,7 @@ class AccountManager
             System.out.println("Enter amount to " + transactionType + ": ");
             double amount = scanner.nextDouble();
             
-            if(transactiontype.equals("deposit"))
+            if(transactionType.equals("deposit"))
             {
                 account.deposit(amount);
             }
@@ -223,7 +214,7 @@ class AccountManager
     }
     
     
-    private static int generateAccountNumber()
+    public static int generateAccountNumber()
     {
         return accountNumberCounter++;
     }
@@ -234,6 +225,8 @@ class AccountManager
 
 public class Bank_Account_System 
 {
+    private static Scanner scanner = new Scanner(System.in);
+    
     public static void main(String[] args) 
     {
         int choice;
@@ -274,6 +267,6 @@ public class Bank_Account_System
                 default: System.out.println("Invalid choice, please try again!");
                 break;    
             }        
-        } while(choice != 5);
+        } while(choice != 6);
     }
 }
