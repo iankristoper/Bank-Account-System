@@ -16,9 +16,6 @@ import java.util.Scanner;
 
 class BankAccount
 {
-    //this line is a static variables, which means it is shared to all instances of the class
-    private static int accountNumberCounter = 1000;
-    
     //this is the instance variables, which means when this attributes is used in the object it is not shared to other
     //it has unique value depending to the user
     private int accountNumber;
@@ -111,6 +108,9 @@ class BankAccount
 
 class AccountManager
 {
+    //this line is a static variables, which means it is shared to all instances of the class
+    private static int accountNumberCounter = 1000;
+    
     //private static  -> it is only accessible within this class, and not available for instantiation 
     //new ArrayList<> -> initialized and empty arraylist
     private static List<BankAccount> accounts = new ArrayList<>();  //static variable named accounts of type List<BankAccount>
@@ -136,7 +136,7 @@ class AccountManager
     }
     
     
-    //
+    //methods for performing transaction
     public static void performTransaction(String transactionType)
     {
         System.out.println("Enter account number: ");
@@ -167,6 +167,46 @@ class AccountManager
         
     }
     
+    public static void checkBalance()
+    {
+        System.out.println("Enter bank account number: ");
+        int accountNumber = scanner.nextInt();
+        
+        BankAccount account = findAccount(accountNumber);
+        if(account != null)
+        {
+            System.out.println("Account holder: " + account.getAccountHolderName());
+            System.out.println("Account balance: " + account.checkBalance());
+        }
+        else 
+        {
+            System.out.println("Account not found!");
+        }
+    }
+    
+    public static void printTransactionHistory()
+    {
+        System.out.println("Enter bank account number: ");
+        int accountNumber = scanner.nextInt();
+        
+        BankAccount account = findAccount(accountNumber);
+        if(account != null)
+        {
+            List<String> transactions = account.printTransactionHistory();
+            System.out.println("Transaction history for account numebr " + account.getAccountNumber());
+            for(String transaction : transactions)
+            {
+                System.out.println(transaction);
+            }
+        }
+        else 
+        {
+            System.out.println("Account not found!");
+        }
+    }
+    
+    
+    
     
     //
     private static BankAccount findAccount(int accountNumber)
@@ -180,6 +220,12 @@ class AccountManager
         }
         
         return null;
+    }
+    
+    
+    private static int generateAccountNumber()
+    {
+        return accountNumberCounter++;
     }
 }
 
@@ -207,16 +253,27 @@ public class Bank_Account_System
             
             switch(choice)
             {
-                case 1:
-                {
-                    
-                    
-                    
-                }
-            }
-            
-            
-            
+                case 1: AccountManager.createAccount();
+                break;
+                
+                case 2: AccountManager.performTransaction("deposit");
+                break;
+                
+                case 3: AccountManager.performTransaction("withdraw");
+                break;
+                
+                case 4: AccountManager.checkBalance();
+                break;
+                
+                case 5: AccountManager.printTransactionHistory();
+                break;
+                
+                case 6: System.out.println("Exiting the Bank Account System. Goodbye!"); 
+                break;
+                
+                default: System.out.println("Invalid choice, please try again!");
+                break;    
+            }        
         } while(choice != 5);
     }
 }
