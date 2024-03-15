@@ -149,7 +149,18 @@ class AccountManager
             System.out.println("Enter amount to " + transactionType + ": ");
             double amount = scanner.nextDouble();
             
-            
+            if(transactiontype.equals("deposit"))
+            {
+                account.deposit(amount);
+            }
+            else if(transactionType.equals("withdraw"))
+            {
+                account.withdraw(amount);
+            }
+            else
+            {
+                System.out.println("Account not found!");
+            }
             
         }
         
